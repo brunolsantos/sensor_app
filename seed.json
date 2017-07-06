@@ -1,0 +1,5 @@
+{
+	"undefined": "localhost/sensorapp",
+	"dev": "localhost/sensorapp",
+	"prod": "localhost/sensorapp"
+}
