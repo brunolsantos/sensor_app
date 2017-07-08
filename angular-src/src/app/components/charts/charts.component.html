@@ -1,0 +1,49 @@
+<div *ngIf="charts">
+  <h3 class="text-primary text-center">Sensores</h3>
+
+  <div class="row">
+    <!--div *ngFor="let chart of charts"-->
+    <div class="col-sm-6 text-center">
+      <h3>{{charts[0].title}}</h3>
+      <x-chartist class="ct-perfect-fourth" [data]="charts[0].data" [type]="charts[0].type" [options]="charts[0].options">
+      </x-chartist>
+    </div>
+
+    <div class="col-sm-6 text-center">
+      <h3>{{charts[1].title}}</h3>
+      <x-chartist class="ct-perfect-fourth" [data]="charts[1].data" [type]="charts[1].type" [options]="charts[1].options">
+      </x-chartist>
+    </div>
+
+    <div class="col-sm-6 text-center">
+      <h3>{{charts[2].title}}</h3>
+      <x-chartist class="ct-perfect-fourth" [data]="charts[2].data" [type]="charts[2].type" [options]="charts[2].options">
+      </x-chartist>
+    </div>
+
+    <div class="col-sm-6 text-center">
+      <h3>{{charts[3].title}}</h3>
+      <x-chartist class="ct-perfect-fourth" [data]="charts[3].data" [type]="charts[3].type" [options]="charts[3].options">
+      </x-chartist>
+    </div>
+    <!--/div-->
+  </div>
+</div>
+<!--div class="row">
+  <div class="col-sm-6 text-center">
+    <h3>PH</h3>
+    <label class="ph-chart ct-perfect-fourth"></label>
+  </div>
+  <div class="col-sm-6 text-center">
+    <h3>TEMPERATURA</h3>
+    <label class="temp-chart ct-perfect-fourth"></label>
+  </div>
+  <div class="col-sm-6 text-center">
+    <h3>TURBIDEZ</h3>
+    <label class="turb-chart ct-perfect-fourth"></label>
+  </div>
+  <div class="col-sm-6 text-center">
+    <h3>NIVEL</h3>
+    <label class="nivel-chart ct-perfect-fourth"></label>
+  </div>
+</div-->
