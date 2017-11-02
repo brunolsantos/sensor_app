@@ -25,9 +25,11 @@
     "angular2-flash-messages": "^1.0.8",
     "bootstrap": "^3.3.7",
     "chartist": "^0.11.0",
+    "chartist-plugin-tooltip": "0.0.11",
     "chartist-plugin-tooltips": "0.0.17",
     "core-js": "^2.4.1",
     "jquery": "^3.2.1",
+    "querystring": "^0.2.0",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import * as Chartist from 'chartist';
+import * as chartistTooltip from 'chartist-plugin-tooltip'
+import * as chartistTooltips from 'chartist-plugin-tooltips'
 import { ChartType } from 'ng-chartist';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Http, Headers } from '@angular/http';
@@ -21,7 +23,7 @@ export interface Chart {
   templateUrl: './charts.component.html',
   styleUrls: ['./charts.component.css']
 })
-export class ChartsComponent implements OnInit {
+export class ChartsComponent implements OnInit, OnDestroy{
   measurements: any = [];
   charts: Chart[];
   dates: any = [];
@@ -30,16 +32,17 @@ export class ChartsComponent implements OnInit {
   temperature: any = [];
   nivel: any = [];
   interval:any;
-
-  constructor(private http: Http, private flashMessages: FlashMessagesService) {
-    this.interval = setInterval(() => {
-         this.initCharts();
-    }, 3000);   
-  }
+  constructor(private http: Http, private flashMessages: FlashMessagesService) {   
+}
 
 
   ngOnInit() {
-    //this.initCharts();
+    this.interval = setInterval(() => {
+      this.initCharts();
+    }, 10000); 
+  } 
+  ngOnDestroy() {
+    clearInterval(this.interval);
   } 
 
   initCharts(){
@@ -74,16 +77,16 @@ export class ChartsComponent implements OnInit {
     //Preparing Lines and Series
     for (var i = 0; i < this.measurements.length; i++) {
       this.dates.push(this.measurements[i].date);
-      /*
+      
       this.ph.push({ 'meta': 'PH', 'value': this.measurements[i].ph });
       this.temperature.push({ 'meta': "TEMP", "value": this.measurements[i].temperature });
       this.nivel.push({ 'meta': 'NIVEL', 'value': this.measurements[i].level });
       this.turbidity.push({ 'meta': 'TURB', 'value': this.measurements[i].turbidity });
-      */
-      this.ph.push(this.measurements[i].ph);
+      
+      /*this.ph.push(this.measurements[i].ph);
       this.temperature.push(this.measurements[i].temperature);
       this.nivel.push(this.measurements[i].level);
-      this.turbidity.push(this.measurements[i].turbidity);
+      this.turbidity.push(this.measurements[i].turbidity);*/
     }
 
     var completeData = {
@@ -113,10 +116,11 @@ export class ChartsComponent implements OnInit {
         options: {
           low: 0,
           high: 10,
-          fullWidth: true//,
-          //plugins: [
-            //Chartist.plugins.tooltip()
-          //]
+          fullWidth: true,
+          plugins: [
+            //chartistTooltips()
+            chartistTooltip()
+          ]
         }
       },
       {
@@ -126,10 +130,12 @@ export class ChartsComponent implements OnInit {
         options: {
           low: 0,
           high: 10,
-          fullWidth: true//,
-          //plugins: [
+          fullWidth: true,
+          plugins: [
             //Chartist.plugins.tooltip()
-          //]
+            //chartistTooltips()
+            chartistTooltip()
+          ]
         }
       },
       {
@@ -139,10 +145,12 @@ export class ChartsComponent implements OnInit {
         options: {
           low: 0,
           high: 100,
-          fullWidth: true//,
-          //plugins: [
-            //"Chartist.plugins.tooltip()"
-          //]
+          fullWidth: true,
+          plugins: [
+            //Chartist.plugins.tooltip()
+            //chartistTooltips()
+            chartistTooltip()
+          ]
         }
       },
       {
@@ -152,10 +160,12 @@ export class ChartsComponent implements OnInit {
         options: {
           low: 0,
           high: 2,
-          fullWidth: true//,
-         // plugins: [
+          fullWidth: true,
+          plugins: [
             //Chartist.plugins.tooltip()
-          //]
+            //chartistTooltips()
+            chartistTooltip()
+          ]
         }
       }
     ];
